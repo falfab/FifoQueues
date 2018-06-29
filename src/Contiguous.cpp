@@ -3,8 +3,6 @@
 
 namespace fifo_queues {
 
-
-
 template<typename T>
 Contiguous<T>::Contiguous(size_t size) : QueueObject<T>(size) {
     _queue = new T[size];
@@ -81,6 +79,7 @@ const T &Contiguous<T>::operator[](size_t index) const {
         return _queue[index];
     error("Contiguous::operator[] with an overflow index");
 }
+
 template<typename T>
 Contiguous<T> &Contiguous<T>::operator=(const Contiguous<T> &c) {
     if (this == &c)

@@ -1,37 +1,42 @@
 #include <iostream>
 
+#include "Linked.hpp"
 #include "Contiguous.hpp"
 
 int main(){
     std::cout << "Hello, world!" << std::endl;
-    size_t size = 10;
-    fifo_queues::Contiguous<int> c(10);
-    c.push(0);
-    c.push(1);
-    c.push(2);
-    c.push(30);
+    auto l = new fifo_queues::Linked<int>(10);
 
-    std::cout << c << std::endl;
+    l->push(10);
+    l->push(20);
 
-    auto a = new fifo_queues::Contiguous<int>(5);
-    a->push(1);
-    a->push(1);
+    std::cout << l->to_string() << std::endl;
 
-    std::cout << *a << std::endl;
+    int val = l->pop();
+    std::cout << "Popped value: " << val << std::endl;
 
-    auto b = *a + c;
+    std::cout << l->to_string() << std::endl;
+    delete l;
 
-    std::cout << b << std::endl;
+    fifo_queues::Linked<int> g(10);
 
-    c = b;
-    std::cout << c << std::endl;
+    g.push(30);
+    g.push(40);
+    g.push(50);
+    g.push(60);
 
-    fifo_queues::Contiguous<int> d(b);
-    std::cout << d << std::endl;
+    std::cout << g << std::endl;
 
-    std::cout << &d << " " << &b << std::endl;
+    fifo_queues::Linked<int> h(5);
+    h.push(3);
+    h.push(4);
 
-//    c << std::cout;
+    auto f = g + h;
 
-//    std::cout << std::to_string(c[3]) << std::endl;
+    std::cout << f << std::endl;
+
+    auto k = new fifo_queues::Linked<int>(f);
+
+    std::cout << *k << std::endl;
+
 }

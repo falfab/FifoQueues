@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-//#include <Contiguous.hpp>
+#include <Linked.hpp>
 
 template <typename R>
 std::ostream& operator<<(std::ostream& stream, const fifo_queues::Contiguous<R>& c) {
@@ -13,7 +13,7 @@ fifo_queues::Contiguous<R> operator+(fifo_queues::Contiguous<R>& c1, fifo_queues
     size_t size_sum = c1.size() + c2.size();
 //    size_t length_sum = c1.length() + c2.length();
 
-    fifo_queues::Contiguous<R> r (size_sum);
+    fifo_queues::Contiguous<R> r(size_sum);
     for (size_t i = 0; i < c1.length(); i++) {
         r.push(c1[i]);
     }
@@ -22,4 +22,35 @@ fifo_queues::Contiguous<R> operator+(fifo_queues::Contiguous<R>& c1, fifo_queues
     }
 
     return r;
+}
+
+template <typename R>
+std::ostream& operator<< (std::ostream& stream, const fifo_queues::Linked<R>& f) {
+    return stream << f.to_string();
+}
+
+template <typename R>
+fifo_queues::Linked<R> operator+(fifo_queues::Linked<R>& l1, fifo_queues::Linked<R>& l2) {
+    size_t size_sum = l1.size() + l2.size();
+
+    auto values = new R[l1.length() + l2.length()];
+    size_t i;
+    fifo_queues::Node<R>* current = l1.head();
+    for (i = 0; i < l1.length(); ++i) {
+        values[i] = current->value();
+        current = current->next();
+    }
+
+    current = l2.head();
+    for(size_t j = 0; j < l2.length(); ++j) {
+        values[i+j] = current->value();
+        current = current->next();
+    }
+
+    fifo_queues::Linked<R> concat(size_sum);
+    for (size_t j = 0; j < l1.length() + l2.length(); ++j) {
+        concat.push(values[j]);
+    }
+
+    return concat;
 }

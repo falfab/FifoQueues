@@ -24,6 +24,7 @@ int main(){
     g.push(40);
     g.push(50);
     g.push(60);
+    std::cout << "Hello" << std::endl;
 
     std::cout << g << std::endl;
 
@@ -38,5 +39,23 @@ int main(){
     auto k = new fifo_queues::Linked<int>(f);
 
     std::cout << *k << std::endl;
+
+//    auto a = new int[3] {10, 20, 30};
+//
+//    std::cout << sizeof(a) / sizeof(*a) << std::endl;
+//
+//    auto n = new fifo_queues::ScalarNode<int[]> (a);
+//
+//    auto v = n->value();
+//
+//    for (size_t i = 0; i < n->size(); i++) {
+//        std::cout << i << ": " << v[i] << std::endl;
+//    }
+//
+//    delete n;
+//
+//    fifo_queues::ScalarNode<fifo_queues::Contiguous<int>> c(1);
+
+//    fifo_queues::ContiguousNode c(10);
 
 }

@@ -35,16 +35,16 @@ fifo_queues::Linked<R> operator+(fifo_queues::Linked<R>& l1, fifo_queues::Linked
 
     auto values = new R[l1.length() + l2.length()];
     size_t i;
-    fifo_queues::Node<R>* current = l1.head();
+    nodes::ScalarNode<R>* current = l1.head();
     for (i = 0; i < l1.length(); ++i) {
         values[i] = current->value();
-        current = current->next();
+        current = static_cast<nodes::ScalarNode<R>*>(current->next());
     }
 
     current = l2.head();
     for(size_t j = 0; j < l2.length(); ++j) {
         values[i+j] = current->value();
-        current = current->next();
+        current = static_cast<nodes::ScalarNode<R>*>(current->next());
     }
 
     fifo_queues::Linked<R> concat(size_sum);

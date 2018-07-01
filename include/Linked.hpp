@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "Node.hpp"
+#include "ScalarNode.hpp"
 #include "QueueObject.hpp"
 
 namespace fifo_queues {
@@ -27,10 +27,10 @@ public:
 
     const T& operator[] (size_t index) const;
 
-    Node<T>* head() const;
+    nodes::ScalarNode<T>* head() const;
 
 protected:
-    Node<T>* _head;
+    nodes::ScalarNode<T>* _head;
 
 
 };

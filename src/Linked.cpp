@@ -97,13 +97,6 @@ T Linked<T>::pop() {
 
 template<typename T>
 Linked<T>::~Linked() {
-//    ScalarNode<T>* node = _head;
-//    ScalarNode<T>* next = nullptr;
-//    for(size_t i = 0; i < _size; ++i) {
-//        next = static_cast<ScalarNode<T>*>(node->next());
-//        delete node;
-//        node = next;
-//    }
     delete _head;
 }
 

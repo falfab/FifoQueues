@@ -4,7 +4,9 @@
 namespace nodes {
 
 template<typename T>
-ScalarNode<T>::ScalarNode(T value) {}
+ScalarNode<T>::ScalarNode(T value) {
+    _value = value;
+}
 
 template<typename T>
 NodeObject<T> *ScalarNode<T>::next() const{
@@ -13,7 +15,7 @@ NodeObject<T> *ScalarNode<T>::next() const{
 
 template<typename T>
 void ScalarNode<T>::next(NodeObject<T>* node) {
-    _next = (ScalarNode<T>*) node;
+    _next = static_cast<ScalarNode<T>*>(node);
 }
 
 template<typename T>

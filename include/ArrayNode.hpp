@@ -10,7 +10,7 @@ namespace nodes {
 template <typename T>
 class ArrayNode : public NodeObject<T> {
 public:
-    explicit ArrayNode() = default;
+    explicit ArrayNode() = delete;
     explicit ArrayNode(size_t size);
     explicit ArrayNode(T* values, size_t size);
     ArrayNode(const ArrayNode& node);
@@ -19,6 +19,11 @@ public:
 
     NodeObject<T> *next() const override;
     void next(NodeObject<T>* node) override;
+
+    void push(T value);
+    T pop();
+
+    const std::string to_string() const;
 
     size_t size() const;
 
@@ -31,8 +36,9 @@ public:
 protected:
     T* _values;
     size_t _size;
+    size_t _length {0};
 
-    ArrayNode<T>* _next;
+    ArrayNode<T>* _next = nullptr;
 };
 
 } // namespace fifo_queues

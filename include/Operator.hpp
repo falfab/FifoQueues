@@ -4,10 +4,10 @@
 namespace fifo_queues{
 
 template <typename R>
-class Contiguous;   // forward declaration
+class ContiguousQueue;   // forward declaration
 
 template <typename R>
-class Linked;       // forward declaration
+class LinkedQueue;       // forward declaration
 
 } // namespace fifo_queues
 
@@ -20,21 +20,21 @@ class ArrayNode;    // forward declaration
 } // namespace nodes
 
 template <typename R>
-std::ostream& operator<< (std::ostream&                     stream,
-                          const fifo_queues::Contiguous<R>& c     );
+std::ostream& operator<< (std::ostream&                          stream,
+                          const fifo_queues::ContiguousQueue<R>& c     );
 
 template<typename R>
-fifo_queues::Contiguous<R> operator+ (fifo_queues::Contiguous<R>& c1, fifo_queues::Contiguous<R>& c2);
+fifo_queues::ContiguousQueue<R> operator+ (fifo_queues::ContiguousQueue<R>& c1, fifo_queues::ContiguousQueue<R>& c2);
 
 template <typename R>
-std::ostream& operator<< (std::ostream&                 stream,
-                          const fifo_queues::Linked<R>& c     );
+std::ostream& operator<< (std::ostream&                      stream,
+                          const fifo_queues::LinkedQueue<R>& c     );
 
 template <typename R>
-fifo_queues::Linked<R> operator+ (fifo_queues::Linked<R>& l1, fifo_queues::Linked<R>& l2);
+fifo_queues::LinkedQueue<R> operator+ (fifo_queues::LinkedQueue<R>& l1, fifo_queues::LinkedQueue<R>& l2);
 
 template<typename R>
-std::ostream& operator<< (std::ostream&               stream,
-                          const nodes::ArrayNode<R>&  node);
+std::ostream& operator<< (std::ostream&              stream,
+                          const nodes::ArrayNode<R>& node);
 
 #include "impl/Operator.i.hpp"

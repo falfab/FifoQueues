@@ -1,16 +1,16 @@
-#include "Contiguous.hpp"
+#include "ContiguousQueue.hpp"
 #include "Util.hpp"
 
 namespace fifo_queues {
 
 template<typename T>
-Contiguous<T>::Contiguous(size_t size) : QueueObject<T>(size) {
+ContiguousQueue<T>::ContiguousQueue(size_t size) : QueueObject<T>(size) {
     _queue = new T[size];
     _length = 0;
 }
 
 template<typename T>
-Contiguous<T>::Contiguous(const Contiguous<T> &c) : QueueObject<T>(c._size){
+ContiguousQueue<T>::ContiguousQueue(const ContiguousQueue<T> &c) : QueueObject<T>(c._size){
     _queue = new T[c._size];
     for( size_t i = 0; i < c._length; i ++ ) {
         push(c[i]);
@@ -18,7 +18,7 @@ Contiguous<T>::Contiguous(const Contiguous<T> &c) : QueueObject<T>(c._size){
 }
 
 template<typename T>
-void Contiguous<T>::push(T element) {
+void ContiguousQueue<T>::push(T element) {
     if (_length < _size) {
         _queue[_length] = element;
         _length++;
@@ -26,24 +26,24 @@ void Contiguous<T>::push(T element) {
 }
 
 template<typename T>
-Contiguous<T>::~Contiguous() {
+ContiguousQueue<T>::~ContiguousQueue() {
     delete[] _queue;
 }
 
 template<typename T>
-size_t Contiguous<T>::length() const {
+size_t ContiguousQueue<T>::length() const {
     return _length;
 }
 
 template<typename T>
-size_t Contiguous<T>::size() const {
+size_t ContiguousQueue<T>::size() const {
     return _size;
 }
 
 template<typename T>
-T Contiguous<T>::pop() {
+T ContiguousQueue<T>::pop() {
     if (_length == 0){
-        error("Contiguous::pop() on a empty queue.");
+        utils::error("ContiguousQueue::pop() on a empty queue.");
     }
 
     T elem = _queue[0];
@@ -55,8 +55,8 @@ T Contiguous<T>::pop() {
 }
 
 template<typename T>
-std::string Contiguous<T>::to_string() const {
-    std::string s = "[";
+std::string ContiguousQueue<T>::to_string() const {
+    std::string s = "[ ";
     for (size_t i = 0; i < _length; i++) {
         if (i != _length - 1)
             s += std::to_string(_queue[i]) + ", ";
@@ -67,21 +67,21 @@ std::string Contiguous<T>::to_string() const {
 }
 
 template<typename T>
-T &Contiguous<T>::operator[](size_t index) {
+T &ContiguousQueue<T>::operator[](size_t index) {
     if (index < _length)
         return _queue[index];
-    error("Contiguous::operator[] with an overflow index");
+    utils::error("ContiguousQueue::operator[] with an overflow index");
 }
 
 template<typename T>
-const T &Contiguous<T>::operator[](size_t index) const {
+const T &ContiguousQueue<T>::operator[](size_t index) const {
     if (index < _length)
         return _queue[index];
-    error("Contiguous::operator[] with an overflow index");
+    utils::error("ContiguousQueue::operator[] with an overflow index");
 }
 
 template<typename T>
-Contiguous<T> &Contiguous<T>::operator=(const Contiguous<T> &c) {
+ContiguousQueue<T> &ContiguousQueue<T>::operator=(const ContiguousQueue<T> &c) {
     if (this == &c)
         return *this;
     delete[] _queue;
@@ -94,7 +94,7 @@ Contiguous<T> &Contiguous<T>::operator=(const Contiguous<T> &c) {
     return *this;
 }
 
-template class Contiguous<int>;
-template class Contiguous<float>;
+template class ContiguousQueue<int>;
+template class ContiguousQueue<float>;
 
 } // namespace fifo_queues

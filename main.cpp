@@ -1,74 +1,43 @@
 #include <iostream>
 #include <ArrayNode.hpp>
+#include <ArrayLinkedQueue.hpp>
 
-#include "Linked.hpp"
-#include "Contiguous.hpp"
+#include "LinkedQueue.hpp"
+#include "ContiguousQueue.hpp"
+
+using namespace std;
 
 int main(){
-//    std::cout << "Hello, world!" << std::endl;
-//    auto l = new fifo_queues::Linked<int>(10);
-//
-//    l->push(10);
-//    l->push(20);
-//
-//    std::cout << l->to_string() << std::endl;
-//
-//    int val = l->pop();
-//    std::cout << "Popped value: " << val << std::endl;
-//
-//    std::cout << l->to_string() << std::endl;
-//    delete l;
-//
-//    fifo_queues::Linked<int> g(10);
-//
-//    g.push(30);
-//    g.push(40);
-//    g.push(50);
-//    g.push(60);
-//    std::cout << "Hello" << std::endl;
-//
-//    std::cout << g << std::endl;
-//
-//    fifo_queues::Linked<int> h(5);
-//    h.push(3);
-//    h.push(4);
-//
-//    auto f = g + h;
-//
-//    std::cout << f << std::endl;
-//
-//    auto k = new fifo_queues::Linked<int>(f);
-//
-//    std::cout << *k << std::endl;
+    fifo_queues::ContiguousQueue<int> q(2);
+    fifo_queues::ContiguousQueue<int> r(2);
+    q.push(1);q.push(2);
+    r.push(3);r.push(4);
+    cout << q << endl;
+    cout << r << endl;
+    r = q;
+    cout<< r << endl;
 
-//    auto a = new int[3] {10, 20, 30};
-//
-//    std::cout << sizeof(a) / sizeof(*a) << std::endl;
-//
-//    auto n = new fifo_queues::ScalarNode<int[]> (a);
-//
-//    auto v = n->value();
-//
-//    for (size_t i = 0; i < n->size(); i++) {
-//        std::cout << i << ": " << v[i] << std::endl;
-//    }
-//
-//    delete n;
-//
-//    fifo_queues::ScalarNode<fifo_queues::Contiguous<int>> c(1);
+    cout << "----------------------" << endl;
 
-//    fifo_queues::ContiguousNode c(10);
+    fifo_queues::LinkedQueue<int> a(2);
+    fifo_queues::LinkedQueue<int> b(2);
+    a.push(1);b.push(2);
+    a.push(3);b.push(4);
+    cout << a << endl;
+    cout << b << endl;
+    a = b;
+    cout<< a << endl;
 
-//    fifo_queues::LinkedContiguous<int> c(10);
+    cout << "----------------------" << endl;
 
-    nodes::ArrayNode<int> a(10);
-    nodes::ArrayNode<int> b(new int[3] {1, 2, 3},3);
-    auto c = new nodes::ArrayNode<int>(b);
-    delete c;
-
-//    std::cout << a << std::endl;
-
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-
+    fifo_queues::ArrayLinkedQueue<int, 2> d(2);
+    fifo_queues::ArrayLinkedQueue<int, 2> e(2);
+    for (int i = 0; i < 4; ++i) {
+        d.push(i);
+        e.push(i + 5);
+    }
+    cout << d << endl;
+    cout << e << endl;
+    d = e;
+    cout << d << endl;
 }

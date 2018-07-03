@@ -15,7 +15,7 @@ public:
 
     NodeObject<T> *next() const override ;
     void next(NodeObject<T>* node) override ;
-    const T value() const;
+    const T& value() const;
     void value(T value);
 
 protected:

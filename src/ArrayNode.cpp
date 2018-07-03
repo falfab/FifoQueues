@@ -15,6 +15,7 @@ ArrayNode<T>::ArrayNode(T *values, size_t size) : _size(size) {
     for (size_t i = 0; i < _size; ++i) {
         _values[i] = values[i];
     }
+    _length = _size;
 }
 
 template<typename T>
@@ -23,6 +24,7 @@ ArrayNode<T>::ArrayNode(const ArrayNode &node) : _size(node._size) {
     for (size_t i = 0; i < _size; ++i) {
         _values[i] = node._values[i];
     }
+    _length = node._length;
 }
 
 template<typename T>
@@ -52,6 +54,51 @@ const T &ArrayNode<T>::operator[](size_t index) {
 template<typename T>
 size_t ArrayNode<T>::size() const {
     return _size;
+}
+
+template<typename T>
+T ArrayNode<T>::pop() {
+    if (_length <= 0)
+        utils::error("ArrayNode::pop() pop on an empty queue");
+    T value = _values[0];
+    for (size_t i = 1; i < _size; ++i) {
+        _values[i - 1] = _values[i];
+    }
+
+    if (_next != nullptr) {
+        auto n = _next->pop();
+        _values[_size - 1] = n;
+    } else {
+        _values[_size - 1] = 0;
+    }
+
+    return value;
+}
+
+template<typename T>
+void ArrayNode<T>::push(T value) {
+    if (_length >= _size)
+        if (_next != nullptr)
+            _next->push(value);
+        else
+            utils::error("ArrayNode::push() pop on a full queue");
+    else {
+        _values[_length] = value;
+        _length++;
+    }
+}
+
+template<typename T>
+const std::string ArrayNode<T>::to_string() const {
+    std::string s = "[ ";
+    for (size_t i = 0; i < _size; ++i) {
+        if (i < _size -1) {
+            s += std::to_string(_values[i]) + ", ";
+        } else {
+            s += std::to_string(_values[i]) + " ";
+        }
+    }
+    return s + "]";
 }
 
 template class ArrayNode<int>;

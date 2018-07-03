@@ -1,4 +1,4 @@
-#include <Contiguous.hpp>
+#include <ContiguousQueue.hpp>
 #include "ScalarNode.hpp"
 
 namespace nodes {
@@ -19,7 +19,7 @@ void ScalarNode<T>::next(NodeObject<T>* node) {
 }
 
 template<typename T>
-const T ScalarNode<T>::value() const{
+const T& ScalarNode<T>::value() const{
     return _value;
 }
 

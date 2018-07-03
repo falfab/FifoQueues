@@ -1,10 +1,10 @@
 #pragma once
 
-namespace fifo_queues {
+namespace utils {
 
 [[noreturn]]
 inline void error(const char* msg);
 
-} // namespace fifo_queues
+} // namespace utils
 
 #include "impl/Util.i.hpp"

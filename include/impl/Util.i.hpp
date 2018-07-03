@@ -3,7 +3,7 @@
 #include <cstdlib>  // std::exit, EXIT_FAILURE
 #include <iostream> // std::cerr
 
-namespace fifo_queues {
+namespace utils {
 
 [[noreturn]]
 inline void error(const char* msg) {
@@ -11,4 +11,4 @@ inline void error(const char* msg) {
     std::exit(EXIT_FAILURE);
 }
 
-} // namespace fifo_queues
+} // namespace utils

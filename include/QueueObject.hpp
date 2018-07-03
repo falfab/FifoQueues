@@ -19,6 +19,7 @@ protected:
     explicit QueueObject(size_t size);
     virtual ~QueueObject()= 0;
 };
+
 } // namespace fifo_queues
 
 #include "impl/QueueObject.i.hpp"

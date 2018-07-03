@@ -1,6 +1,5 @@
 #include <iostream>
-#include <ContiguousNode.hpp>
-#include <LinkedContiguous.hpp>
+#include <ArrayNode.hpp>
 
 #include "Linked.hpp"
 #include "Contiguous.hpp"
@@ -60,6 +59,16 @@ int main(){
 
 //    fifo_queues::ContiguousNode c(10);
 
-    fifo_queues::LinkedContiguous<int> c(10);
+//    fifo_queues::LinkedContiguous<int> c(10);
+
+    nodes::ArrayNode<int> a(10);
+    nodes::ArrayNode<int> b(new int[3] {1, 2, 3},3);
+    auto c = new nodes::ArrayNode<int>(b);
+    delete c;
+
+//    std::cout << a << std::endl;
+
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
 
 }

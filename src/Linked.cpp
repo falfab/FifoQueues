@@ -1,6 +1,6 @@
+#include <iostream>
 #include "Linked.hpp"
 #include "Util.hpp"
-#include <iostream>
 
 namespace fifo_queues {
 
@@ -127,7 +127,7 @@ std::string Linked<T>::to_string() const {
 }
 
 template<typename T>
-const T& Linked<T>::operator[](size_t index) const {
+const T& Linked<T>::operator[](size_t index) {
     if (index < _length && index > 0) {
         nodes::ScalarNode<T>* node = _head;
         for (size_t i = 0; i < index; i ++) {

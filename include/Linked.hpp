@@ -25,7 +25,7 @@ public:
     size_t size() const;
     std::string to_string() const;
 
-    const T& operator[] (size_t index) const;
+    const T& operator[] (size_t index);
 
     nodes::ScalarNode<T>* head() const;
 

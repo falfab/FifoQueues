@@ -1,7 +1,10 @@
 #pragma once
 
 #include <iostream>
-#include <Linked.hpp>
+#include <ArrayNode.hpp>
+#include "ScalarNode.hpp"
+#include "Linked.hpp"
+#include "Contiguous.hpp"
 
 template <typename R>
 std::ostream& operator<<(std::ostream& stream, const fifo_queues::Contiguous<R>& c) {
@@ -25,8 +28,8 @@ fifo_queues::Contiguous<R> operator+(fifo_queues::Contiguous<R>& c1, fifo_queues
 }
 
 template <typename R>
-std::ostream& operator<< (std::ostream& stream, const fifo_queues::Linked<R>& f) {
-    return stream << f.to_string();
+std::ostream& operator<< (std::ostream& stream, const fifo_queues::Linked<R>& c) {
+    return stream << c.to_string();
 }
 
 template <typename R>
@@ -53,4 +56,17 @@ fifo_queues::Linked<R> operator+(fifo_queues::Linked<R>& l1, fifo_queues::Linked
     }
 
     return concat;
+}
+
+template<typename R>
+std::ostream& operator<< (std::ostream& stream, const nodes::ArrayNode<R>& node){
+    std::string s = "[ ";
+    for (size_t i = 0; i < node.size(); ++i) {
+        if (i < node.size() -1)
+            s += std::to_string(node._values[i]) + ", ";
+        else
+            s += std::to_string(node._values[i]) + " ";
+    }
+    s += "];";
+    return stream << s;
 }

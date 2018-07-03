@@ -19,20 +19,55 @@ class ArrayNode;    // forward declaration
 
 } // namespace nodes
 
+/**
+ * @brief Stream operator overload
+ * @tparam R
+ * @param stream
+ * @param c
+ * @return
+ */
 template <typename R>
 std::ostream& operator<< (std::ostream&                          stream,
                           const fifo_queues::ContiguousQueue<R>& c     );
 
+/**
+ * @brief Concatenation operator
+ * @tparam R
+ * @param c1
+ * @param c2
+ * @return
+ */
 template<typename R>
 fifo_queues::ContiguousQueue<R> operator+ (fifo_queues::ContiguousQueue<R>& c1, fifo_queues::ContiguousQueue<R>& c2);
 
+/** Stream operator overload
+ * @brief
+ * @tparam R
+ * @param stream
+ * @param c
+ * @return
+ */
 template <typename R>
 std::ostream& operator<< (std::ostream&                      stream,
                           const fifo_queues::LinkedQueue<R>& c     );
 
+/**
+ * @brief Concatenation operator
+ * @tparam R
+ * @param l1
+ * @param l2
+ * @return
+ */
 template <typename R>
 fifo_queues::LinkedQueue<R> operator+ (fifo_queues::LinkedQueue<R>& l1, fifo_queues::LinkedQueue<R>& l2);
 
+/**
+ * @brief Stream operator overload
+ * @tparam R
+ * @param stream
+ * @param node
+ * @return
+ */
 template<typename R>
 std::ostream& operator<< (std::ostream&              stream,
                           const nodes::ArrayNode<R>& node);

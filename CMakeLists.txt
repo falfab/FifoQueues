@@ -142,12 +142,13 @@ add_custom_target(clean-all
 #            COMMENT "Code Complexity")
 #endif()
 #
-#    find_program(DOXYGEN_FOUND doxygen)
-#    if (DOXYGEN_FOUND)
-#        add_custom_target(doc
-#                COMMAND doxygen ${PROJECT_SOURCE_DIR}/doxygen.cfg
-#                COMMENT "Code documentation")
-#    endif()
+
+find_program(DOXYGEN_FOUND doxygen)
+if (DOXYGEN_FOUND)
+    add_custom_target(doc
+            COMMAND doxygen ${PROJECT_SOURCE_DIR}/doxygen.cfg
+            COMMENT "Code documentation")
+endif()
 
     # ------------------------------------------------------------------------------
 ### BUILD LIBRARY ###

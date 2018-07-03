@@ -96,6 +96,8 @@ public:
     friend std::ostream& (::operator<<) (std::ostream&        stream,
                                          const ArrayNode<R>&  node);
 
+    bool operator== (const ArrayNode<T>& node) const;
+
 protected:
     /// @brief values array
     T* _values;

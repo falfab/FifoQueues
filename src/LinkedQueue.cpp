@@ -158,7 +158,7 @@ LinkedQueue<T> &LinkedQueue<T>::operator=(const LinkedQueue<T> &l1) {
     delete _head;
     nodes::ScalarNode<T>* current = nullptr;
     nodes::ScalarNode<T>* prev = nullptr;
-    for (size_t i = 0; i < l1._size; i++) {
+    for (size_t i = 0; i < l1.length(); i++) {
         current = new nodes::ScalarNode<T>(l1[i]);
         if (i == 0)
             _head = current;
@@ -166,6 +166,8 @@ LinkedQueue<T> &LinkedQueue<T>::operator=(const LinkedQueue<T> &l1) {
             prev->next(current);
         prev = current;
     }
+    _size = l1.size();
+    _length = l1.length();
     return *this;
 }
 

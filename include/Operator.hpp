@@ -9,6 +9,9 @@ class ContiguousQueue;   // forward declaration
 template <typename R>
 class LinkedQueue;       // forward declaration
 
+template <typename R, size_t T>
+class ArrayLinkedQueue;
+
 } // namespace fifo_queues
 
 
@@ -71,5 +74,17 @@ fifo_queues::LinkedQueue<R> operator+ (fifo_queues::LinkedQueue<R>& l1, fifo_que
 template<typename R>
 std::ostream& operator<< (std::ostream&              stream,
                           const nodes::ArrayNode<R>& node);
+
+/**
+ * @brief Conateniation opertator
+ * @tparam R
+ * @tparam L
+ * @param c1
+ * @param c2
+ * @return
+ */
+template <typename R, size_t L>
+fifo_queues::ArrayLinkedQueue<R, L> operator+ (fifo_queues::ArrayLinkedQueue<R, L>& c1,
+                                               fifo_queues::ArrayLinkedQueue<R, L>& c2);
 
 #include "impl/Operator.i.hpp"

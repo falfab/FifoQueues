@@ -5,6 +5,7 @@
 #include "ScalarNode.hpp"
 #include "LinkedQueue.hpp"
 #include "ContiguousQueue.hpp"
+#include "ArrayLinkedQueue.hpp"
 
 template <typename R>
 std::ostream& operator<<(std::ostream& stream, const fifo_queues::ContiguousQueue<R>& c) {
@@ -69,4 +70,28 @@ std::ostream& operator<< (std::ostream& stream, const nodes::ArrayNode<R>& node)
     }
     s += "];";
     return stream << s;
+}
+
+template <typename R, size_t L>
+fifo_queues::ArrayLinkedQueue<R, L> operator+ (fifo_queues::ArrayLinkedQueue<R, L>& c1,
+                                               fifo_queues::ArrayLinkedQueue<R, L>& c2) {
+    size_t size_sum = c1.size() + c2.size();
+
+    fifo_queues::ArrayLinkedQueue<R, L> concat(size_sum);
+
+    for (size_t i = 0; i < c1.size(); ++i){
+        nodes::ArrayNode<R> arr = c1[i];
+        for (size_t j = 0; j < arr.size(); ++j){
+            concat.push(arr[j]);
+        }
+    }
+
+    for (size_t i = 0; i < c1.size(); ++i){
+        nodes::ArrayNode<R> arr = c2[i];
+        for (size_t j = 0; j < arr.size(); ++j){
+            concat.push(arr[j]);
+        }
+    }
+
+    return concat;
 }

@@ -40,4 +40,7 @@ int main(){
     cout << e << endl;
     d = e;
     cout << d << endl;
+
+    cout << "----------------------" << endl;
+    cout << (d[0] == d[1]) << endl;
 }

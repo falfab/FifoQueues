@@ -98,6 +98,14 @@ public:
      */
     ArrayLinkedQueue<T, LENGTH> &operator= (const ArrayLinkedQueue<T, LENGTH>& l);
 
+    /**
+     * @brief Concatenation operator
+     * @tparam R
+     */
+    template <typename R, size_t L>
+    friend ArrayLinkedQueue<R, L> (::operator+) (ArrayLinkedQueue<R, L>& c1,
+                                              ArrayLinkedQueue<R, L>& c2);
+
 protected:
     /// @brief Points to the first node of the queue
     nodes::ArrayNode<T>* _head;

@@ -100,6 +100,16 @@ const std::string ArrayNode<T>::to_string() const {
     }
     return s + "]";
 }
+template<typename T>
+bool ArrayNode<T>::operator==(const ArrayNode<T> &node) const {
+    if (_length != node._length)
+        return false;
+    for (size_t i = 0; i < _length; ++i) {
+        if (_values[i] != node._values[i])
+            return false;
+    }
+    return true;
+}
 
 template class ArrayNode<int>;
 template class ArrayNode<float>;

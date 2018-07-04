@@ -139,3 +139,16 @@ TEST_CASE("Mismatch Function", "[MismatchFunction]") {
     REQUIRE(utils::first_mismatch<T>(q3,q1) == 30);
     REQUIRE(utils::first_mismatch<T>(q3,q2) == 30);
 }
+
+TEST_CASE("Heap Allocation", "[HeapAlloc]") {
+    using T = int;
+    const size_t SIZE = 10;
+    const size_t SIZE_ARRAY = 10;
+    auto q1 = new fifo_queues::ContiguousQueue<T>(SIZE);
+    auto q2 = new fifo_queues::LinkedQueue<T>(SIZE);
+    auto q3 = new fifo_queues::ArrayLinkedQueue<T, SIZE_ARRAY>(SIZE);
+
+    delete q1;
+    delete q2;
+    delete q3;
+}

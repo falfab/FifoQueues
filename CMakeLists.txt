@@ -17,7 +17,6 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     add_compile_options("-Wno-c++98-compat")
     add_compile_options("-Wno-c++98-compat-pedantic")
     add_compile_options("-Wno-padded")
-    add_compile_options("-Wno-undefined-func-template")
     add_compile_options("-Wno-documentation-unknown-command")
     add_compile_options("-Wno-global-constructors")
     add_compile_options("-Wno-exit-time-destructors")
@@ -162,12 +161,9 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_library(fifo_queues ${SRCS})
 
-add_executable(fifo ${SRCS} main.cpp)
-
-#add_library(fifo_queues main.cpp include/QueueObject.hpp)
-
 add_executable(fifo_queues_test EXCLUDE_FROM_ALL
         ${PROJECT_SOURCE_DIR}/test/Test.cpp)
+
 target_link_libraries(fifo_queues_test fifo_queues)
 
 # ------------------------------------------------------------------------------
@@ -199,29 +195,41 @@ ADD_TEST(NAME MismatchFunction
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
         COMMAND ./fifo_queues_test [MismatchFunction])
 
-#find_program(VALGRIND_FOUND valgrind)
-#if (VALGRIND_FOUND)
-#    ADD_TEST(NAME ValgrindTest1
-#            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
-#            COMMAND valgrind --leak-check=full --show-leak-kinds=all
-#            --track-origins=yes
-#            ./algebra_test [IntVector])
-#
-#    ADD_TEST(NAME ValgrindTest2
-#            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
-#            COMMAND valgrind --leak-check=full --show-leak-kinds=all
-#            --track-origins=yes
-#            ./algebra_test [FloatVector])
-#
-#    ADD_TEST(NAME ValgrindTest3
-#            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
-#            COMMAND valgrind --leak-check=full --show-leak-kinds=all
-#            --track-origins=yes
-#            ./algebra_test [IntMatrix])
-#
-#    ADD_TEST(NAME ValgrindTest4
-#            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
-#            COMMAND valgrind --leak-check=full --show-leak-kinds=all
-#            --track-origins=yes
-#            ./algebra_test [FloatMatrix])
-#endif()
+find_program(VALGRIND_FOUND valgrind)
+if (VALGRIND_FOUND)
+    ADD_TEST(NAME ValgrindTest1
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [ContiguousQueue])
+
+    ADD_TEST(NAME ValgrindTest2
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [LinkedQueue])
+
+    ADD_TEST(NAME ValgrindTest3
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [ArrayLinkedQueue])
+
+    ADD_TEST(NAME ValgrindTest4
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [TestPolymorphismQueue])
+
+    ADD_TEST(NAME ValgrindTest5
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [MismatchFunction])
+
+    ADD_TEST(NAME ValgrindTest6
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+            COMMAND valgrind --leak-check=full --show-leak-kinds=all
+            --track-origins=yes
+            ./fifo_queues_test [HeapAlloc])
+endif()

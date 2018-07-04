@@ -43,4 +43,27 @@ int main(){
 
     cout << "----------------------" << endl;
     cout << (d[0] == d[1]) << endl;
+
+    cout << "----------SKA-----------" << endl;
+
+    fifo_queues::ArrayLinkedQueue<int, 2> q1(4);
+    q1.push(1);
+    q1.push(2);
+    q1.push(3);
+
+    fifo_queues::ArrayLinkedQueue<int, 2> q2(4);
+    q2.push(1);
+    q2.push(2);
+    q2.push(4);
+
+    auto v = q2.to_vector();
+
+    for (size_t i = 0; i < v.size(); ++i) {
+        std::cout << v[i] << std::endl;
+    }
+
+//    utils::first_mismatch<int>(static_cast<fifo_queues::QueueObject<int>&>(q1),
+//                               static_cast<fifo_queues::QueueObject<int>&>(q1));
+
+    std::cout << utils::first_mismatch<int>(q2, q1) << std::endl;
 }

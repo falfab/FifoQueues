@@ -1,5 +1,6 @@
 #pragma once
 #include <cstddef> // size_t
+#include <vector>
 
 /**
  * @brief Queues namespace
@@ -42,6 +43,12 @@ public:
      * @return
      */
     virtual std::string to_string() const = 0;
+
+    /**
+     * @brief Return vector representation of the queue
+     * @return
+     */
+    virtual std::vector<T> to_vector() const = 0;
 
 protected:
     /// @brief Number of nodes

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "ContiguousQueue.hpp"
 #include "ArrayLinkedQueue.hpp"
+#include "Util.hpp"
 
 TEST_CASE("Contiguous Queue", "[ContiguousQueue]") {
     using T = int;
@@ -110,4 +111,31 @@ TEST_CASE("Test Polymorphism Queues", "[TestPolymorphismQueue]") {
     REQUIRE(obj1.size() == SIZE);
     REQUIRE(obj2.size() == SIZE);
     REQUIRE(obj3.size() == SIZE);
+}
+
+TEST_CASE("Mismatch Function", "[MismatchFunction]") {
+    using T = int;
+    const size_t SIZE = 3;
+    const size_t ARRAY_SIZE = 3;
+
+    fifo_queues::ContiguousQueue<T> q1(SIZE);
+    fifo_queues::LinkedQueue<T> q2(SIZE);
+    fifo_queues::ArrayLinkedQueue<T, ARRAY_SIZE> q3(SIZE);
+
+    for (int i = 0; i < static_cast<int>(SIZE)-1; ++i) {
+        q1.push(i);
+        q2.push(i);
+        q3.push(i);
+    }
+
+    q1.push(10);
+    q2.push(20);
+    q3.push(30);
+
+    REQUIRE(utils::first_mismatch<T>(q1,q2) == 10);
+    REQUIRE(utils::first_mismatch<T>(q1,q3) == 10);
+    REQUIRE(utils::first_mismatch<T>(q2,q1) == 20);
+    REQUIRE(utils::first_mismatch<T>(q2,q3) == 20);
+    REQUIRE(utils::first_mismatch<T>(q3,q1) == 30);
+    REQUIRE(utils::first_mismatch<T>(q3,q2) == 30);
 }

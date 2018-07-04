@@ -111,7 +111,12 @@ bool ArrayNode<T>::operator==(const ArrayNode<T> &node) const {
     return true;
 }
 
+template<typename T>
+T ArrayNode<T>::value(size_t index) {
+    return _values[index];
+}
+
 template class ArrayNode<int>;
-template class ArrayNode<float>;
+//template class ArrayNode<float>;
 
 } // namespace array_node

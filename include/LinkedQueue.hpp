@@ -44,31 +44,37 @@ public:
      * @brief Push an element into queue
      * @param element
      */
-    void push(T element);
+    void push(T element) override;
 
     /**
      * @brief Pop a element from queue
      * @return
      */
-    T pop();
+    T pop() override;
 
     /**
      * @brief Return the number of elements into queue
      * @return
      */
-    size_t length() const;
+    size_t length() const override;
 
     /**
      * @brief Return the size of the queue
      * @return
      */
-    size_t size() const;
+    size_t size() const override;
 
     /**
      * @brief Return a string representation of the object
      * @return
      */
-    std::string to_string() const;
+    std::string to_string() const override;
+
+    /**
+     * @brief Return the vector representation of the queue
+     * @return
+     */
+    std::vector<T> to_vector() const override;
 
     /**
      * @brief Return the element at index position
@@ -107,3 +113,5 @@ protected:
 };
 
 } // namespace fifo_queues
+
+#include "impl/LinkedQueue.i.hpp"

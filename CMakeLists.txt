@@ -195,6 +195,10 @@ ADD_TEST(NAME TestPolymorphismQueue
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
         COMMAND ./fifo_queues_test [TestPolymorphismQueue])
 
+ADD_TEST(NAME MismatchFunction
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/build
+        COMMAND ./fifo_queues_test [MismatchFunction])
+
 #find_program(VALGRIND_FOUND valgrind)
 #if (VALGRIND_FOUND)
 #    ADD_TEST(NAME ValgrindTest1

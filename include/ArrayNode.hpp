@@ -98,6 +98,8 @@ public:
 
     bool operator== (const ArrayNode<T>& node) const;
 
+    T value(size_t index);
+
 protected:
     /// @brief values array
     T* _values;

@@ -45,31 +45,37 @@ public:
      * @brief Append element to tail
      * @param element
      */
-    void push(T element);
+    void push(T element) override;
 
     /**
      * @brief Pop the first element of the queue
      * @return
      */
-    T pop();
+    T pop() override;
 
     /**
      * @brief Length getter
      * @return
      */
-    size_t length() const;
+    size_t length() const override;
 
     /**
      * @brief Size Getter
      * @return
      */
-    size_t size() const;
+    size_t size() const override;
 
     /**
      * @brief Return a string representation of the object
      * @return
      */
-    std::string to_string() const;
+    std::string to_string() const override;
+
+    /**
+     * @brief Return the vector representation of the queue
+     * @return
+     */
+    std::vector<T> to_vector() const override;
 
     /**
      * @brief Return the element in queue at index position

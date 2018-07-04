@@ -7,7 +7,6 @@
 
 namespace fifo_queues {
 
-
 template<typename T, size_t LENGTH>
 ArrayLinkedQueue<T, LENGTH>::ArrayLinkedQueue(size_t size) : QueueObject<T>(size) {
     if (size == 0)
@@ -114,14 +113,27 @@ ArrayLinkedQueue<T, LENGTH> &ArrayLinkedQueue<T, LENGTH>::operator=(const ArrayL
 
 template<typename T, size_t LENGTH>
 const nodes::ArrayNode<T> &ArrayLinkedQueue<T, LENGTH>::operator[](size_t index) const {
-    if (index >= _length || index < 0)
+    if (index >= _size || index < 0)
         utils::error("ArrayLinkedQueue::[] index out of bounds");
 
     nodes::ArrayNode<T>* current = _head;
-    for (size_t i = 0; i < index; i ++) {
+    for (size_t i = 0; i < index; ++i) {
         current = static_cast<nodes::ArrayNode<T>*>(current->next());
     }
     return *current;
+}
+
+template<typename T, size_t LENGTH>
+std::vector<T> ArrayLinkedQueue<T, LENGTH>::to_vector() const {
+    std::vector<T> v;
+    auto current = _head;
+    for (size_t i = 0; i < size(); ++i) {
+        for(size_t j = 0; j < LENGTH && v.size() < _length; ++j) {
+            v.push_back(current->value(j));
+        }
+        current = static_cast<nodes::ArrayNode<T>*>(current->next());
+    }
+    return v;
 }
 
 } // namespace fifo_queues

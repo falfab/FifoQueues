@@ -66,6 +66,12 @@ public:
     size_t size() const override;
 
     /**
+     * @brief Return the vector representation of the queue
+     * @return
+     */
+    std::vector<T> to_vector() const override;
+
+    /**
      * @brief Return the desired element at index position
      * @param index
      * @return
@@ -105,6 +111,8 @@ protected:
 };
 
 } // namespace fifo_queues
+
+#include "impl/ContiguousQueue.i.hpp"
 
 
 

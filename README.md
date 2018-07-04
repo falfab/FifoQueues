@@ -19,3 +19,8 @@ To test the library:
 ```bash
 make test
 ```
+
+To generate documentation:
+```bash
+make doc
+```
